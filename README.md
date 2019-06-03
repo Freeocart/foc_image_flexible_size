@@ -2,6 +2,8 @@
 
 Ocmod with backward compatibility for getting more control at image cropping. Can be used to get image with it’s original size.
 
+Opencart support: version 2.3 and higher.
+
 Default resize logic built on scaling image by it’s minimal side and putting the result into a fixed size container.
 
 In most cases this behaviour expected and correct, but there are two limitations:
