@@ -17,10 +17,10 @@ Control is very simple:
 1. To force scale by height – prefix your width
 
 Example settings:
-![Example settings](./repo_img/example_settings.png)
+![Example settings](./repo_images/example_settings.png)
 
 Result:
-![Example result](./repo_img/example_result.png)
+![Example result](./repo_images/example_result.png)
 
 ## Backward compatibility
 
