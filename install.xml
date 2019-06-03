@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>Foc image flexible size</name>
+  <code>foc_image_flexible_size</code>
+  <version>1.0</version>
+  <author>Freeocart</author>
+  <link>https://freeocart.ru</link>
+
+  <!-- use 0x0 to get full image size -->
+  <file path="catalog/model/tool/image.php">
+    <operation>
+      <search><![CDATA[$image_new = 'cache/' . utf8_substr($filename, 0, utf8_strrpos($filename, '.')) . '-' . (int)$width . 'x' . (int)$height . '.' . $extension;]]></search>
+      <add position="before"><![CDATA[
+      $crop_by = '';
+
+      if (strpos($width, '0') === 0 && strpos($height, '0') === 0) {
+        $width = 0;
+        $height = 0;
+      }
+      else {
+        if (strpos($width, '0') === 0) {
+          $crop_by = 'h';
+        }
+        elseif (strpos($height, '0') === 0) {
+          $crop_by = 'w';
+        }
+        $width = (int)$width;
+        $height = (int)$height;
+      }
+      ]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[$image->resize($width, $height);]]></search>
+      <add position="replace"><![CDATA[$image->resize($width, $height, $crop_by);]]></add>
+    </operation>
+    <operation>
+      <search><![CDATA[if ($width_orig != $width || $height_orig != $height) {]]></search>
+      <add position="replace"><![CDATA[if (($width_orig != $width || $height_orig != $height) && ($width != 0 && $height != 0)) {]]></add>
+    </operation>
+  </file>
+</modification>
